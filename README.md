@@ -6,13 +6,13 @@ Bienvenido a este proyecto de práctica.
 
 Este repositorio fue creado para aprender el flujo de trabajo con Git y GitHub.
 
-## Caracteristicas
+## Características
 
 - Control de versiones con Git
-- Colaboracion mediante Pull Requests
-- Codigo organizado y documentado
+- Colaboración mediante Pull Requests
+- Código organizado y documentado
 
-## Como empezar
+## Cómo empezar
 
 1. Clona el repositorio
 2. Realiza tus cambios
@@ -20,4 +20,4 @@ Este repositorio fue creado para aprender el flujo de trabajo con Git y GitHub.
 
 ## Contribuir
 
-Si deseas contribuir, por favor abre un issue primero para discutir los cambios que te gustaria hacer.
+Si deseas contribuir, por favor abre un issue primero para discutir los cambios que te gustaría hacer.
