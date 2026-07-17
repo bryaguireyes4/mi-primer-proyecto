@@ -1,0 +1,30 @@
+/*
+  Tokens de diseño base (fase 1). El sistema de diseño premium completo
+  (neumorfismo, escalas de elevación, tipografía) se define en la fase 6.
+  Estos valores ya fijan la paleta para que todas las fases la reutilicen.
+*/
+:root {
+  --color-fondo: #10151f;
+  --color-fondo-elevado: #171e2b;
+  --color-superficie: #1c2434;
+  --color-borde: #2a3346;
+  --color-texto: #eef1f6;
+  --color-texto-tenue: #9aa5b8;
+  --color-acento: #d4af6a;
+  --color-acento-fuerte: #e8c88a;
+  --color-peligro: #e07a6e;
+  --color-exito: #7fb88a;
+
+  --radio-md: 12px;
+  --radio-lg: 18px;
+
+  --espacio-xs: 4px;
+  --espacio-sm: 8px;
+  --espacio-md: 16px;
+  --espacio-lg: 24px;
+  --espacio-xl: 32px;
+
+  --fuente-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --objetivo-tactil: 44px;
+}

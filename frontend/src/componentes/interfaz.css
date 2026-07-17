@@ -1,0 +1,143 @@
+.pantalla {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--espacio-lg) var(--espacio-md);
+  gap: var(--espacio-lg);
+}
+
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: var(--espacio-lg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  margin-bottom: var(--espacio-md);
+  text-align: left;
+}
+
+.campo label {
+  font-size: 14px;
+  color: var(--color-texto-tenue);
+}
+
+.campo input,
+.campo select {
+  min-height: var(--objetivo-tactil);
+  padding: 0 var(--espacio-md);
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-borde);
+  background: var(--color-fondo-elevado);
+  color: var(--color-texto);
+  font-size: 16px;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 1px;
+}
+
+.boton {
+  min-height: var(--objetivo-tactil);
+  padding: 0 var(--espacio-lg);
+  border-radius: var(--radio-md);
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-sm);
+}
+
+.boton-primario {
+  background: linear-gradient(180deg, var(--color-acento-fuerte), var(--color-acento));
+  color: #241a08;
+  box-shadow: 0 4px 12px rgba(212, 175, 106, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.boton-primario:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(212, 175, 106, 0.3);
+}
+
+.boton-secundario {
+  background: var(--color-fondo-elevado);
+  color: var(--color-texto);
+  border: 1px solid var(--color-borde);
+}
+
+.boton-peligro {
+  background: var(--color-peligro);
+  color: #2a0e0a;
+}
+
+.boton-bloque {
+  width: 100%;
+}
+
+.texto-error {
+  color: var(--color-peligro);
+  font-size: 14px;
+  text-align: left;
+}
+
+.insignia {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.insignia-admin {
+  background: rgba(212, 175, 106, 0.18);
+  color: var(--color-acento-fuerte);
+}
+
+.insignia-usuario {
+  background: rgba(154, 165, 184, 0.18);
+  color: var(--color-texto-tenue);
+}
+
+.insignia-inactivo {
+  background: rgba(224, 122, 110, 0.18);
+  color: var(--color-peligro);
+}
+
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.barra-superior h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.tenue {
+  color: var(--color-texto-tenue);
+  font-size: 14px;
+}
+
+.fila-usuario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--espacio-md) 0;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.fila-usuario:last-child {
+  border-bottom: none;
+}
