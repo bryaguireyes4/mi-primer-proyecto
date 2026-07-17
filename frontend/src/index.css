@@ -19,7 +19,7 @@ body {
 
 #root {
   min-height: 100svh;
-  max-width: 480px;
+  max-width: var(--ancho-maximo-app);
   margin: 0 auto;
 }
 
@@ -29,6 +29,14 @@ select {
   font-family: inherit;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a {
   color: var(--color-acento);
+}
+
+::selection {
+  background: rgba(212, 175, 106, 0.3);
 }
