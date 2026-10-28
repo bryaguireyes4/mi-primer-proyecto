@@ -43,3 +43,9 @@ Resumen de lo construido y las decisiones tomadas (octubre 2026), en orden.
   1. El artefacto seguía privado (causa más probable).
   2. El video se desactiva a propósito en `assets/js/main.v1.js` (bloque "Video de portada") si el navegador tiene `connection.saveData` activo (ahorro de datos), `prefers-reduced-motion: reduce`, o hardware de gama baja (`hardwareConcurrency <= 2` o `deviceMemory <= 2`). En esos casos se ve la foto fija, es comportamiento esperado, no un bug.
 - Nota técnica de entorno: al extraer el zip del proyecto en una ruta de `%TEMP%` muy anidada, algunos archivos (sobre todo `assets/img/productos/*`) devolvían 404 en el servidor local aunque existían, por superar el límite de 260 caracteres de ruta en Windows (MAX_PATH). Se resolvió copiando el proyecto a una ruta corta antes de servir/publicar. Si vuelve a pasar: acortar la ruta, no el nombre de los archivos.
+
+## 8. Espaciado más compacto (rama `duo/compactar-secciones`)
+- El cliente pidió que toda la web fuera más compacta (capturó el hueco entre el hero y "Nosotros" en móvil/tableta).
+- Cambio con Codex (gpt-6.1-sol, esfuerzo medio), solo `assets/css/styles.v1.css`: `--section-y` de `clamp(72px, 11vw, 136px)` a `clamp(40px, 6vw, 80px)`; padding inferior del hero en móvil/tableta de `clamp(180px, 46vw, 340px)` a `clamp(100px, 24vw, 180px)`; padding del hero en escritorio de `84px` a `56px`.
+- Verificado visualmente en 375 px y 1280 px: el texto del hero sigue legible sobre la foto/video y ninguna sección quedó apretada.
+- Se creó `AGENTS.md` en la raíz del proyecto para que Codex tenga contexto fijo en encargos futuros (primera vez que se usa el flujo Claude+Codex en este repo).
