@@ -7,8 +7,8 @@ La web es estática: se publica la raíz del proyecto (`index.html`, `assets/`, 
    - Account › Cloudflare Pages › Edit
    - Zone › DNS › Edit y Zone › Zone › Read (zona `boacgro.com`)
 2. GitHub → Settings → Secrets and variables → Actions → crear `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID`.
-3. GitHub → Actions → “Publicar en Cloudflare Pages” → Run workflow (rama `claude/web-avicola-garces`).
-   Después, cada push a esa rama publica solo.
+3. GitHub → Actions → “Publicar en Cloudflare Pages” → Run workflow (rama `main`).
+   Después, cada push a `main` publica solo.
 
 ## Opción B · Cloudflare Pages a mano
 1. dash.cloudflare.com → Workers & Pages → Create → Pages → Upload assets.
@@ -19,7 +19,7 @@ Con terminal: `npx wrangler pages deploy <carpeta> --project-name=avicolag`
 
 ## Opción C · Vercel
 - Importar: https://vercel.com/new/import?s=https://github.com/bryaguireyes4/mi-primer-proyecto
-  Framework “Other”, sin build. Cambiar Production Branch a `claude/web-avicola-garces` (o pasar la web a `main`).
+  Framework “Other”, sin build. La web está en `main`, así que publica a la primera.
 - O desde la PC, en la carpeta del sitio: `npx vercel` y luego `npx vercel --prod`.
 - Dominio: Settings → Domains → `avicolag.boacgro.com`; en Cloudflare, CNAME `avicolag` → `cname.vercel-dns.com`, nube gris (DNS only).
 

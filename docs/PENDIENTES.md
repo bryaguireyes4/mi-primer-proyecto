@@ -12,7 +12,7 @@
 - [ ] Idealmente, reemplazar las fotos referenciales del catálogo por fotos reales del producto.
 
 ## Publicación
-- [ ] Guardar en GitHub (Settings → Secrets and variables → Actions) `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID`, y relanzar el flujo “Publicar en Cloudflare Pages”. O publicar a mano según `docs/PUBLICAR.md`.
+- [ ] Guardar en GitHub (Settings → Secrets and variables → Actions) `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID`, y relanzar el flujo “Publicar en Cloudflare Pages” (rama `main`). O publicar a mano según `docs/PUBLICAR.md`.
 - [ ] Confirmar que el dominio es exactamente `boacgro.com`.
 - [ ] Probar la vista previa al compartir el enlace por WhatsApp y Facebook.
 

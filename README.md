@@ -6,4 +6,4 @@ Web estática de Avícola Garcés, distribuidora de pollo en el sur de Guayaquil
 - Contexto para Claude Code: [`CLAUDE.md`](CLAUDE.md)
 - Qué se hizo: [`docs/HISTORIAL.md`](docs/HISTORIAL.md) · Pendientes: [`docs/PENDIENTES.md`](docs/PENDIENTES.md)
 - Publicar: [`docs/PUBLICAR.md`](docs/PUBLICAR.md)
-- Rama de trabajo: `claude/web-avicola-garces`
+- Rama principal: `main`

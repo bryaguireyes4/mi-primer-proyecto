@@ -6,7 +6,7 @@ name: Publicar en Cloudflare Pages
 
 on:
   push:
-    branches: [claude/web-avicola-garces]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ concurrency:
 
 env:
   PROJECT: avicolag
-  BRANCH: claude/web-avicola-garces
+  BRANCH: main
   ZONE: boacgro.com
   HOST: avicolag.boacgro.com
 
