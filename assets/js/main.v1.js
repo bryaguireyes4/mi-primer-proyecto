@@ -193,8 +193,8 @@
     if (canPlay) {
       var start = function () {
         var v = document.createElement('video');
-        // Se reproduce una vez y queda en el último cuadro: sin salto al reiniciar
-        v.muted = true; v.defaultMuted = true; v.playsInline = true; v.autoplay = true;
+        // Bucle infinito: el archivo ya trae la unión fundida, la repetición no salta
+        v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
         v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
         v.preload = 'auto';
         v.src = src;
