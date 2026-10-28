@@ -15,6 +15,7 @@
 - [ ] Guardar en GitHub (Settings → Secrets and variables → Actions) `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID`, y relanzar el flujo “Publicar en Cloudflare Pages”. O publicar a mano según `docs/PUBLICAR.md`.
 - [ ] Confirmar que el dominio es exactamente `boacgro.com`.
 - [ ] Probar la vista previa al compartir el enlace por WhatsApp y Facebook.
+- [ ] Vista previa temporal como artefacto de Claude: https://claude.ai/artifact/6wPb24kn361HcpUUkV28RZ — activar "Anyone with the link" en el menú Share para que cualquiera la abra sin sesión. Mientras siga privada, se ve borrosa y sin video a quien no tenga acceso. No reemplaza publicar en Cloudflare: el link es temporal y no usa el dominio final.
 
 ## Técnico (opcional)
 - [ ] Accesibilidad: el video no tiene pausa (WCAG 2.2.2). Reconsiderar un botón discreto si se busca cumplimiento.

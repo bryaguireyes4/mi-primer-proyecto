@@ -26,5 +26,11 @@ Con terminal: `npx wrangler pages deploy <carpeta> --project-name=avicolag`
 ## Opción D · Servidor Apache
 Subir los archivos públicos a la carpeta pública; `.htaccess` ya trae compresión, caché y bloqueo de archivos internos.
 
+## Opción E · Vista previa rápida (artefacto de Claude)
+No es publicación real, solo un link temporal para que el cliente vea el avance sin esperar al dominio.
+- Link: https://claude.ai/artifact/6wPb24kn361HcpUUkV28RZ
+- Nace privado: abrir la página en claude.ai → menú Share → activar "Anyone with the link" para que cualquiera lo abra sin iniciar sesión. Sin ese paso, solo lo ve el dueño; cualquier otra persona ve una vista borrosa, sin texto ni video.
+- Se actualiza volviendo a publicar el mismo `index.html` desde Claude Code (misma URL, nueva versión).
+
 ## Si cambia el dominio
 Actualizar `https://avicolag.boacgro.com` en `index.html` (canonical, og:url, og:image, JSON-LD), `robots.txt` y `sitemap.xml`.

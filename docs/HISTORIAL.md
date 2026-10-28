@@ -35,3 +35,11 @@ Resumen de lo construido y las decisiones tomadas (octubre 2026), en orden.
 - Vercel y Cloudflare estaban bloqueados desde el entorno de nube de Claude.
 - Se creó `.github/workflows/publicar-cloudflare.yml`: crea el proyecto `avicolag` en Cloudflare Pages, publica, agrega `avicolag.boacgro.com` y su CNAME. Falta que el usuario guarde los secretos en GitHub.
 - Meta etiquetas, JSON-LD, robots y sitemap ya apuntan a `https://avicolag.boacgro.com`.
+
+## 7. Vista previa como artefacto de Claude (desde Claude Code)
+- Se publicó el sitio completo (`index.html` + `assets/`) como artefacto de Claude para compartir un link sin esperar la publicación en Cloudflare: https://claude.ai/artifact/6wPb24kn361HcpUUkV28RZ
+- El artefacto nace **privado**: solo lo abre el dueño hasta que active "Anyone with the link" en el menú Share de la página. Quien lo abre sin ese cambio (o sin sesión) ve solo una vista previa borrosa, sin texto ni video.
+- Reporte del usuario: "en teléfono no carga el video". Dos causas posibles, no excluyentes:
+  1. El artefacto seguía privado (causa más probable).
+  2. El video se desactiva a propósito en `assets/js/main.v1.js` (bloque "Video de portada") si el navegador tiene `connection.saveData` activo (ahorro de datos), `prefers-reduced-motion: reduce`, o hardware de gama baja (`hardwareConcurrency <= 2` o `deviceMemory <= 2`). En esos casos se ve la foto fija, es comportamiento esperado, no un bug.
+- Nota técnica de entorno: al extraer el zip del proyecto en una ruta de `%TEMP%` muy anidada, algunos archivos (sobre todo `assets/img/productos/*`) devolvían 404 en el servidor local aunque existían, por superar el límite de 260 caracteres de ruta en Windows (MAX_PATH). Se resolvió copiando el proyecto a una ruta corta antes de servir/publicar. Si vuelve a pasar: acortar la ruta, no el nombre de los archivos.
