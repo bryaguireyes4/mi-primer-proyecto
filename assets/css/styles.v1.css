@@ -282,14 +282,12 @@ strong { font-weight: 650; }
 .about-facts li { display: flex; gap: 14px; align-items: flex-start; }
 .about-facts svg { width: 22px; height: 22px; flex: none; margin-top: 3px; fill: none; stroke: var(--red-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .about-facts strong { display: block; font-family: var(--font-display); font-size: 0.9375rem; color: var(--ink); }
-.about-map {
-  position: relative; margin: 0; overflow: hidden; aspect-ratio: 4 / 3;
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-l); box-shadow: var(--shadow-1);
-}
-.about-map img { width: 100%; height: 100%; object-fit: cover; }
+.about-map { margin: 0; }
+.map-frame { position: relative; width: 100%; aspect-ratio: 1100 / 785; }
+.map-frame img { width: 100%; height: 100%; object-fit: contain; }
 /* Pulso bajo la punta del pin (coordenadas relativas a la imagen) */
 .map-pulse {
-  position: absolute; left: 21.8%; top: 50.6%; width: 44px; height: 44px; margin: -22px 0 0 -22px;
+  position: absolute; left: 19.7%; top: 51%; width: 44px; height: 44px; margin: -22px 0 0 -22px;
   border-radius: 50%; border: 2px solid rgb(249 0 49 / 0.55); pointer-events: none;
   transform: scale(0.3) rotateX(62deg); opacity: 0;
   animation: map-pulse 2.6s var(--ease-out) infinite;
@@ -299,8 +297,10 @@ strong { font-weight: 650; }
   100% { transform: scale(1.8) rotateX(62deg); opacity: 0; }
 }
 @media (min-width: 860px) {
-  .about-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
-  .about-map { max-width: 560px; justify-self: end; width: 100%; }
+  .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+  .about-text { align-content: center; }
+  /* El mapa sangra un poco a la derecha para igualar el peso visual del texto */
+  .about-map { align-self: center; margin-right: calc(-1 * min(3vw, 48px)); }
 }
 
 /* ---------- Productos ---------- */
