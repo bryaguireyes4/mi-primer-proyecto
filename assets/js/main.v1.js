@@ -198,40 +198,16 @@
         v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
         v.preload = 'auto';
         v.src = src;
-        var toggle = media.querySelector('.media-toggle');
-        var label = toggle.querySelector('.sr-only');
-        var setPaused = function (paused) {
-          toggle.setAttribute('aria-pressed', String(paused));
-          label.textContent = paused ? 'Reproducir video' : 'Pausar video';
-        };
-        v.addEventListener('playing', function () {
-          v.classList.add('is-ready'); media.classList.add('has-video'); setPaused(false);
-        });
-        v.addEventListener('ended', function () { setPaused(true); });
-        v.addEventListener('error', function () { v.remove(); toggle.hidden = true; });
+        var resume = function () { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); };
+        v.addEventListener('playing', function () { v.classList.add('is-ready'); media.classList.add('has-video'); });
+        v.addEventListener('error', function () { v.remove(); });
         media.querySelector('picture').after(v);
-        var p = v.play(); if (p && p.catch) p.catch(function () { setPaused(true); });
-
-        toggle.hidden = false;
-        toggle.addEventListener('click', function () {
-          if (toggle.getAttribute('aria-pressed') === 'true') {
-            if (v.ended) v.currentTime = 0;
-            var pp = v.play(); if (pp && pp.catch) pp.catch(function () {});
-            setPaused(false);
-          } else { v.pause(); setPaused(true); }
-        });
-        // Pausa fuera de pantalla y con la pestaña oculta
-        var userPaused = function () { return toggle.getAttribute('aria-pressed') === 'true'; };
+        resume();
+        // Sin controles: solo se pausa fuera de pantalla o con la pestaña oculta, para ahorrar batería
         if ('IntersectionObserver' in window) {
-          new IntersectionObserver(function (en) {
-            if (userPaused() || v.ended) return;
-            if (en[0].isIntersecting) { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); } else v.pause();
-          }).observe(media);
+          new IntersectionObserver(function (en) { if (en[0].isIntersecting) resume(); else v.pause(); }).observe(media);
         }
-        document.addEventListener('visibilitychange', function () {
-          if (document.hidden) v.pause();
-          else if (!userPaused() && !v.ended) { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); }
-        });
+        document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); else resume(); });
       };
       // Tras el primer render: el LCP es la foto, no el video
       if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1200 }); else setTimeout(start, 500);
