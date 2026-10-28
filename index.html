@@ -94,10 +94,23 @@
 
   <main id="contenido">
 
-    <!-- 1. Portada -->
+    <!-- 1. Portada
+         Fondo: foto panorámica (carga primero, sin JS). Encima, el video entra con un fundido si el
+         contexto lo permite (no con movimiento reducido, ahorro de datos ni equipos de gama baja).
+         Para cambiar el video: reemplazar assets/video/portada.mp4 (1280×720) y portada-480.mp4 (854×480), sin audio. -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true"><span></span><span></span></div>
-      <div class="wrap hero-grid">
+      <figure class="hero-media" data-video-mp4="assets/video/portada.mp4" data-video-mp4-small="assets/video/portada-480.mp4">
+        <picture>
+          <source media="(max-width: 639px)" srcset="assets/img/presentacion-m-640.webp 640w, assets/img/presentacion-m-1000.webp 1000w" sizes="100vw" width="1000" height="868">
+          <img class="hero-photo" src="assets/img/presentacion-1600.webp" srcset="assets/img/presentacion-960.webp 960w, assets/img/presentacion-1600.webp 1600w, assets/img/portada-ancha-2400.webp 2400w" sizes="100vw" width="1600" height="893" alt="Piernas, pechugas y alas de pollo crudas en tres platos sobre una mesa clara." fetchpriority="high">
+        </picture>
+        <button class="media-toggle" type="button" hidden aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect class="i-pause" x="6" y="5" width="4" height="14" rx="1"/><rect class="i-pause" x="14" y="5" width="4" height="14" rx="1"/><path class="i-play" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+          <span class="sr-only">Pausar video</span>
+        </button>
+      </figure>
+
+      <div class="wrap hero-inner">
         <div class="hero-copy">
           <p class="hero-kicker reveal"><span class="dot" aria-hidden="true"></span>Distribuidora de pollo · Sur de Guayaquil</p>
           <h1 id="hero-title" class="reveal">Servimos con compromiso, <span class="nowrap">crecemos contigo.</span></h1>
@@ -111,33 +124,15 @@
           </div>
           <p class="hero-phone reveal">O llámanos al <a href="tel:+593963293045">0963 293 045</a></p>
         </div>
-
-        <!--
-          Video de portada.
-          PENDIENTE: cuando exista el video, colocar los archivos en assets/video/ y completar:
-            data-video-mp4="assets/video/hero.mp4"   (H.264, 1280×1600 o 1080×1350, 6-8 s, sin audio, ≤1,5 MB)
-            data-video-webm="assets/video/hero.webm" (opcional, AV1/VP9)
-            data-poster: ya apunta a la foto de portada; cambiar por el primer cuadro del video si se prefiere
-          Mientras estén vacíos, se muestra la ilustración de marca. El video no se carga con
-          movimiento reducido, ahorro de datos ni en equipos de gama baja.
-        -->
-        <figure class="hero-media reveal" data-video-mp4="" data-video-webm="" data-poster="assets/img/portada-1200.webp">
-          <div class="hero-media-inner">
-            <img class="hero-photo" src="assets/img/portada-800.webp" srcset="assets/img/portada-480.webp 480w, assets/img/portada-800.webp 800w, assets/img/portada-1200.webp 1200w" sizes="(min-width: 960px) 520px, (min-width: 560px) 520px, calc(100vw - 32px)" width="1200" height="1500" alt="Pollo entero y pechugas de pollo frescas sobre mármol blanco con hielo y perejil." fetchpriority="high">
-          </div>
-          <button class="media-toggle" type="button" hidden aria-pressed="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect class="i-pause" x="6" y="5" width="4" height="14" rx="1"/><rect class="i-pause" x="14" y="5" width="4" height="14" rx="1"/><path class="i-play" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
-            <span class="sr-only">Pausar video</span>
-          </button>
-        </figure>
       </div>
     </section>
 
     <!-- 2. Presentación -->
     <section class="section about" id="nosotros" aria-labelledby="about-title">
       <div class="wrap about-grid">
-        <h2 id="about-title" class="about-statement reveal">Una distribuidora de pollo del sur de Guayaquil, con atención directa.</h2>
-        <div class="about-body">
+        <div class="about-text">
+          <h2 id="about-title" class="about-statement reveal">Una distribuidora de pollo del sur de Guayaquil, con atención directa.</h2>
+          <div class="about-body">
           <!-- PENDIENTE: historia del negocio, fundador o trayectoria, solo con datos confirmados por el cliente. -->
           <p class="reveal">Avícola Garcés nace con un principio sencillo, el mismo de nuestro lema: <strong>servir con compromiso y crecer junto a quienes nos eligen.</strong></p>
           <p class="reveal">Sin intermediarios en la conversación: nos escribes, te contamos lo que tenemos y coordinamos contigo cada pedido.</p>
@@ -152,13 +147,9 @@
             </li>
           </ul>
         </div>
-      </div>
-      <div class="wrap">
+        </div>
         <figure class="about-photo reveal">
-          <picture>
-            <source media="(max-width: 639px)" srcset="assets/img/presentacion-m-640.webp 640w, assets/img/presentacion-m-1000.webp 1000w" sizes="calc(100vw - 32px)" width="1000" height="868">
-            <img src="assets/img/presentacion-960.webp" srcset="assets/img/presentacion-960.webp 960w, assets/img/presentacion-1600.webp 1600w" sizes="(min-width: 1280px) 1200px, calc(100vw - 80px)" width="1600" height="893" loading="lazy" alt="Tres platos con piernas, pechugas y alas de pollo crudas sobre una mesa clara.">
-          </picture>
+          <img src="assets/img/portada-800.webp" srcset="assets/img/portada-480.webp 480w, assets/img/portada-800.webp 800w, assets/img/portada-1200.webp 1200w" sizes="(min-width: 860px) 480px, calc(100vw - 32px)" width="1200" height="1500" loading="lazy" alt="Pollo entero y pechugas de pollo frescas sobre mármol blanco con hielo y perejil.">
         </figure>
       </div>
     </section>
@@ -173,9 +164,9 @@
 
         <!-- Imágenes referenciales generadas con IA. PENDIENTE: reemplazar por fotos reales del producto cuando existan. -->
         <ul class="product-list" role="list">
-          <li class="product product--feature reveal" data-product="Pollo entero">
+          <li class="product reveal" data-product="Pollo entero">
             <div class="product-plate">
-              <img src="assets/img/productos/pollo-entero-560.webp" srcset="assets/img/productos/pollo-entero-560.webp 560w, assets/img/productos/pollo-entero-1000.webp 1000w" sizes="(min-width: 1080px) 400px, (min-width: 720px) 50vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Pollo entero crudo sobre un plato claro.">
+              <img src="assets/img/productos/pollo-entero-560.webp" srcset="assets/img/productos/pollo-entero-560.webp 560w, assets/img/productos/pollo-entero-1000.webp 1000w" sizes="(min-width: 768px) 33vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Pollo entero crudo sobre un plato claro.">
             </div>
             <div class="product-body">
               <h3>Pollo entero</h3>
@@ -191,7 +182,7 @@
 
           <li class="product reveal" data-product="Pechuga">
             <div class="product-plate">
-              <img src="assets/img/productos/pechuga-560.webp" srcset="assets/img/productos/pechuga-560.webp 560w, assets/img/productos/pechuga-1000.webp 1000w" sizes="(min-width: 1080px) 400px, (min-width: 720px) 50vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Dos pechugas de pollo crudas sobre un plato claro.">
+              <img src="assets/img/productos/pechuga-560.webp" srcset="assets/img/productos/pechuga-560.webp 560w, assets/img/productos/pechuga-1000.webp 1000w" sizes="(min-width: 768px) 33vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Dos pechugas de pollo crudas sobre un plato claro.">
             </div>
             <div class="product-body">
               <h3>Pechuga</h3>
@@ -208,7 +199,7 @@
 
           <li class="product reveal" data-product="Presas (piernas, muslos y alas)">
             <div class="product-plate">
-              <img src="assets/img/productos/presas-560.webp" srcset="assets/img/productos/presas-560.webp 560w, assets/img/productos/presas-1000.webp 1000w" sizes="(min-width: 1080px) 400px, (min-width: 720px) 50vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Piernas con muslo y alas de pollo crudas, en dos platos.">
+              <img src="assets/img/productos/presas-560.webp" srcset="assets/img/productos/presas-560.webp 560w, assets/img/productos/presas-1000.webp 1000w" sizes="(min-width: 768px) 33vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Piernas con muslo y alas de pollo crudas, en dos platos.">
             </div>
             <div class="product-body">
               <h3>Presas</h3>

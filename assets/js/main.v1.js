@@ -181,46 +181,60 @@
     sync();
   }
 
-  /* ---------- Video de portada (solo si hay archivo y el contexto lo permite) ---------- */
+  /* ---------- Video de portada (solo si el contexto lo permite) ---------- */
   var media = document.querySelector('.hero-media');
   if (media) {
-    var mp4 = media.getAttribute('data-video-mp4');
-    var webm = media.getAttribute('data-video-webm');
-    var poster = media.getAttribute('data-poster');
+    var small = window.matchMedia('(max-width: 639px)').matches;
+    var src = (small && media.getAttribute('data-video-mp4-small')) || media.getAttribute('data-video-mp4');
     var conn = navigator.connection || {};
-    var lowEnd = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4);
-    var canPlay = (mp4 || webm) && !reduceMotion.matches && !conn.saveData && !lowEnd;
+    var lowEnd = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) || (navigator.deviceMemory && navigator.deviceMemory <= 2);
+    var canPlay = src && !reduceMotion.matches && !conn.saveData && !lowEnd;
 
     if (canPlay) {
       var start = function () {
         var v = document.createElement('video');
-        v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+        // Se reproduce una vez y queda en el último cuadro: sin salto al reiniciar
+        v.muted = true; v.defaultMuted = true; v.playsInline = true; v.autoplay = true;
         v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
         v.preload = 'auto';
-        if (poster) v.poster = poster;
-        if (webm) { var s1 = document.createElement('source'); s1.src = webm; s1.type = 'video/webm'; v.appendChild(s1); }
-        if (mp4) { var s2 = document.createElement('source'); s2.src = mp4; s2.type = 'video/mp4'; v.appendChild(s2); }
-        v.addEventListener('playing', function () { v.classList.add('is-ready'); }, { once: true });
-        media.querySelector('.hero-media-inner').appendChild(v);
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
-
+        v.src = src;
         var toggle = media.querySelector('.media-toggle');
+        var label = toggle.querySelector('.sr-only');
+        var setPaused = function (paused) {
+          toggle.setAttribute('aria-pressed', String(paused));
+          label.textContent = paused ? 'Reproducir video' : 'Pausar video';
+        };
+        v.addEventListener('playing', function () {
+          v.classList.add('is-ready'); media.classList.add('has-video'); setPaused(false);
+        });
+        v.addEventListener('ended', function () { setPaused(true); });
+        v.addEventListener('error', function () { v.remove(); toggle.hidden = true; });
+        media.querySelector('picture').after(v);
+        var p = v.play(); if (p && p.catch) p.catch(function () { setPaused(true); });
+
         toggle.hidden = false;
         toggle.addEventListener('click', function () {
-          var paused = toggle.getAttribute('aria-pressed') === 'true';
-          if (paused) { v.play(); toggle.setAttribute('aria-pressed', 'false'); toggle.querySelector('.sr-only').textContent = 'Pausar video'; }
-          else { v.pause(); toggle.setAttribute('aria-pressed', 'true'); toggle.querySelector('.sr-only').textContent = 'Reproducir video'; }
+          if (toggle.getAttribute('aria-pressed') === 'true') {
+            if (v.ended) v.currentTime = 0;
+            var pp = v.play(); if (pp && pp.catch) pp.catch(function () {});
+            setPaused(false);
+          } else { v.pause(); setPaused(true); }
         });
-        // Pausa fuera de pantalla
+        // Pausa fuera de pantalla y con la pestaña oculta
+        var userPaused = function () { return toggle.getAttribute('aria-pressed') === 'true'; };
         if ('IntersectionObserver' in window) {
           new IntersectionObserver(function (en) {
-            if (toggle.getAttribute('aria-pressed') === 'true') return;
+            if (userPaused() || v.ended) return;
             if (en[0].isIntersecting) { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); } else v.pause();
           }).observe(media);
         }
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) v.pause();
+          else if (!userPaused() && !v.ended) { var pp = v.play(); if (pp && pp.catch) pp.catch(function () {}); }
+        });
       };
-      // Tras el primer render: el LCP no depende del video
-      if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1500 }); else setTimeout(start, 600);
+      // Tras el primer render: el LCP es la foto, no el video
+      if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1200 }); else setTimeout(start, 500);
     }
   }
 
