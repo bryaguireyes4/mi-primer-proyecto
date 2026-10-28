@@ -117,14 +117,13 @@
           PENDIENTE: cuando exista el video, colocar los archivos en assets/video/ y completar:
             data-video-mp4="assets/video/hero.mp4"   (H.264, 1280×1600 o 1080×1350, 6-8 s, sin audio, ≤1,5 MB)
             data-video-webm="assets/video/hero.webm" (opcional, AV1/VP9)
-            data-poster="assets/img/hero-poster.webp" (primer cuadro del video, ≤200 KB)
+            data-poster: ya apunta a la foto de portada; cambiar por el primer cuadro del video si se prefiere
           Mientras estén vacíos, se muestra la ilustración de marca. El video no se carga con
           movimiento reducido, ahorro de datos ni en equipos de gama baja.
         -->
-        <figure class="hero-media reveal" data-video-mp4="" data-video-webm="" data-poster="">
+        <figure class="hero-media reveal" data-video-mp4="" data-video-webm="" data-poster="assets/img/portada-1200.webp">
           <div class="hero-media-inner">
-            <div class="hero-light" aria-hidden="true"></div>
-            <img class="hero-mascot" src="assets/img/mascota-520.webp" srcset="assets/img/mascota-520.webp 520w, assets/img/mascota-1040.webp 1040w" sizes="(min-width: 960px) 420px, 70vw" width="385" height="520" alt="Mascota de Avícola Garcés: un gallo de brazos cruzados." fetchpriority="high">
+            <img class="hero-photo" src="assets/img/portada-800.webp" srcset="assets/img/portada-480.webp 480w, assets/img/portada-800.webp 800w, assets/img/portada-1200.webp 1200w" sizes="(min-width: 960px) 520px, (min-width: 560px) 520px, calc(100vw - 32px)" width="1200" height="1500" alt="Pollo entero y pechugas de pollo frescas sobre mármol blanco con hielo y perejil." fetchpriority="high">
           </div>
           <button class="media-toggle" type="button" hidden aria-pressed="false">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect class="i-pause" x="6" y="5" width="4" height="14" rx="1"/><rect class="i-pause" x="14" y="5" width="4" height="14" rx="1"/><path class="i-play" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
@@ -154,6 +153,14 @@
           </ul>
         </div>
       </div>
+      <div class="wrap">
+        <figure class="about-photo reveal">
+          <picture>
+            <source media="(max-width: 639px)" srcset="assets/img/presentacion-m-640.webp 640w, assets/img/presentacion-m-1000.webp 1000w" sizes="calc(100vw - 32px)" width="1000" height="868">
+            <img src="assets/img/presentacion-960.webp" srcset="assets/img/presentacion-960.webp 960w, assets/img/presentacion-1600.webp 1600w" sizes="(min-width: 1280px) 1200px, calc(100vw - 80px)" width="1600" height="893" loading="lazy" alt="Tres platos con piernas, pechugas y alas de pollo crudas sobre una mesa clara.">
+          </picture>
+        </figure>
+      </div>
     </section>
 
     <!-- 3. Catálogo -->
@@ -164,22 +171,11 @@
           <p class="reveal">Elige lo que necesitas y consúltalo directo, o añádelo a tu mensaje para pedir varios productos a la vez.</p>
         </div>
 
-        <!-- PENDIENTE: reemplazar las ilustraciones por fotos reales de cada producto (ver README). -->
+        <!-- Imágenes referenciales generadas con IA. PENDIENTE: reemplazar por fotos reales del producto cuando existan. -->
         <ul class="product-list" role="list">
           <li class="product product--feature reveal" data-product="Pollo entero">
             <div class="product-plate">
-              <svg class="cut" viewBox="0 0 200 150" aria-hidden="true">
-                <path class="cut-fill" d="M28 98c0-28 30-48 70-48 40 0 72 20 74 48 1 20-26 32-74 32-44 0-70-12-70-32Z"/>
-                 <path d="M28 98c0-28 30-48 70-48 40 0 72 20 74 48 1 20-26 32-74 32-44 0-70-12-70-32Z"/>
-                 <path class="cut-fill" d="M96 86c-12-12-6-32 12-34 14-2 24 8 22 20-1 8-6 13-12 16l14-26"/>
-                 <path d="M118 88c-14 4-28-4-28-18 0-12 12-20 24-18 14 2 20 14 16 24"/>
-                 <path d="M126 70l16-26"/><path d="M138 41a5.5 5.5 0 1 1 8-6 5.5 5.5 0 1 1 3 9.5"/>
-                 <path class="cut-fill" d="M128 94c-12-10-8-30 8-34 14-3 26 6 26 18 0 10-8 17-18 18"/>
-                 <path d="M128 94c-12-10-8-30 8-34 14-3 26 6 26 18 0 10-8 17-18 18"/>
-                 <path d="M154 66l16-24"/><path d="M166 39a5.5 5.5 0 1 1 8-6 5.5 5.5 0 1 1 3 9.5"/>
-                 <path d="M44 84c-8 8-10 18-6 26"/>
-                 <path class="cut-accent" d="M60 116c22 6 50 6 74 0"/>
-              </svg>
+              <img src="assets/img/productos/pollo-entero-560.webp" srcset="assets/img/productos/pollo-entero-560.webp 560w, assets/img/productos/pollo-entero-1000.webp 1000w" sizes="(min-width: 1080px) 400px, (min-width: 720px) 50vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Pollo entero crudo sobre un plato claro.">
             </div>
             <div class="product-body">
               <h3>Pollo entero</h3>
@@ -195,12 +191,7 @@
 
           <li class="product reveal" data-product="Pechuga">
             <div class="product-plate">
-              <svg class="cut" viewBox="0 0 200 150" aria-hidden="true">
-                <path class="cut-fill" d="M28 82c-2-26 24-42 56-38 36 4 68 22 90 42-22 18-60 28-96 26-28-2-48-12-50-30Z"/>
-                 <path d="M28 82c-2-26 24-42 56-38 36 4 68 22 90 42-22 18-60 28-96 26-28-2-48-12-50-30Z"/>
-                 <path d="M56 96c32 6 70 2 100-10"/>
-                 <path class="cut-accent" d="M50 64c14-8 34-10 52-6"/>
-              </svg>
+              <img src="assets/img/productos/pechuga-560.webp" srcset="assets/img/productos/pechuga-560.webp 560w, assets/img/productos/pechuga-1000.webp 1000w" sizes="(min-width: 1080px) 400px, (min-width: 720px) 50vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Dos pechugas de pollo crudas sobre un plato claro.">
             </div>
             <div class="product-body">
               <h3>Pechuga</h3>
@@ -217,17 +208,7 @@
 
           <li class="product reveal" data-product="Presas (piernas, muslos y alas)">
             <div class="product-plate">
-              <svg class="cut" viewBox="0 0 200 150" aria-hidden="true">
-                <path class="cut-fill" d="M34 58c-2-24 24-36 44-24 16 10 18 32 6 46-6 7-12 10-18 12-18-2-30-14-32-34Z"/>
-                 <path d="M34 58c-2-24 24-36 44-24 16 10 18 32 6 46-6 7-12 10-18 12-18-2-30-14-32-34Z"/>
-                 <path d="M70 90l20 22"/><path d="M80 82l20 22"/>
-                 <path d="M90 112a6 6 0 1 0 6 6"/><path d="M100 104a6 6 0 1 1-6 6"/><path d="M96 118a6 6 0 1 0 4-14"/>
-                 <path class="cut-accent" d="M46 50c4-8 12-12 20-12"/>
-                 <g transform="translate(8 2)"><path class="cut-fill" d="M110 110c-5-7-2-16 6-21l22-26c8-9 22-10 30-2l20 20c4 4 6 9 4 13l-4 6 4 7c1 4-3 7-7 5l-10-5c-4-2-7-4-10-7l-12-12-18 22c-9 9-19 9-25 0Z"/>
-                 <path d="M110 110c-5-7-2-16 6-21l22-26c8-9 22-10 30-2l20 20c4 4 6 9 4 13l-4 6 4 7c1 4-3 7-7 5l-10-5c-4-2-7-4-10-7l-12-12-18 22c-9 9-19 9-25 0Z"/>
-                 <path d="M144 60c-2 9 0 15 6 21"/>
-                 <path class="cut-accent" d="M118 100c6-8 12-15 18-22"/></g>
-              </svg>
+              <img src="assets/img/productos/presas-560.webp" srcset="assets/img/productos/presas-560.webp 560w, assets/img/productos/presas-1000.webp 1000w" sizes="(min-width: 1080px) 400px, (min-width: 720px) 50vw, calc(100vw - 32px)" width="1000" height="800" loading="lazy" alt="Piernas con muslo y alas de pollo crudas, en dos platos.">
             </div>
             <div class="product-body">
               <h3>Presas</h3>
@@ -241,7 +222,7 @@
             </div>
           </li>
         </ul>
-        <p class="note reveal">Ilustraciones referenciales. Disponibilidad, presentaciones y precios se confirman por WhatsApp.</p>
+        <p class="note reveal">Imágenes referenciales. Disponibilidad, presentaciones y precios se confirman por WhatsApp.</p>
       </div>
     </section>
 

@@ -191,16 +191,6 @@
     var lowEnd = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4);
     var canPlay = (mp4 || webm) && !reduceMotion.matches && !conn.saveData && !lowEnd;
 
-    // Con foto de respaldo pero sin video, se muestra la foto en lugar de la mascota
-    if (poster && !canPlay) {
-      var img = new Image();
-      img.alt = '';
-      img.className = 'hero-poster';
-      img.src = poster;
-      img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover';
-      media.querySelector('.hero-media-inner').appendChild(img);
-    }
-
     if (canPlay) {
       var start = function () {
         var v = document.createElement('video');
