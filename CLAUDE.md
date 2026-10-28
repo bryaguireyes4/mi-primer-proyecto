@@ -40,7 +40,7 @@ robots.txt · sitemap.xml · _headers (Cloudflare) · .htaccess (Apache)
 tools/                     scripts de verificación y armado
 docs/                      historial, pendientes y guía de publicación
 ```
-Rama de trabajo: `claude/web-avicola-garces` (la web no está en `main`).
+Rama principal: `main` (la web vive aquí; cada push a `main` publica en Cloudflare si los secretos existen).
 
 ## Diseño (resumen)
 - Fondos blancos, texto azul casi negro `#0d1625`, acentos del logo: rojo `#f90031` (texto pequeño `#d1002a`), amarillo `#fba409` solo decorativo.
